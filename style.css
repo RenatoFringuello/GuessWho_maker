@@ -1,0 +1,280 @@
+:root{
+    --player1        : #006dd4;
+    --player1_l      : #0f9bf2;
+    --player2        : #db2020;
+    --player2_l      : #ff7878;
+    --guess          : #e4b700;
+    --guess_l        : #ffd738;
+    --guess_back     : #6ccc61;
+    --guess_back_l   : #97f38c;
+    --test           : #a6a6a6;
+    --test_l         : #dddddd;
+    --card_header_fg : #000;
+    --card_header_bg : #fff;
+
+    --card_thickness : 0.25mm;
+    --card_pl_height : 12.7mm;
+    --card_pl_width  :  8.9mm;
+    --card_gs_height : 16.4mm;
+    --card_gs_width  : 10.9mm;
+}
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* border: 1px solid #0002; */
+}
+
+header{
+    background-color: #0005;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem !important;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label, input{cursor: pointer;}
+label{border-bottom: 1px solid #0000;}
+label:hover{border-bottom: 1px solid #000;}
+
+button{
+    padding: 1rem 2rem;
+    background-color: #fffb;
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 5px;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #fff;
+    border-bottom: 2px solid #0005;
+}
+
+.team{
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.front-back-wrapper{
+    display: flex;
+}
+
+.card-bound{
+    border-right: var(--card_thickness) solid black;
+}
+
+/*==================================================================
+    CARDS
+ t:   0,25mm
+ w: 8,9mm 
+ h:  12,7mm 
+==================================================================*/
+.gw-card{
+    padding: 2.5px;
+}
+
+.gw-card.small{
+    width  : var(--card_pl_width);
+    height : var(--card_pl_height);
+}
+
+.gw-card.big{
+    width  : var(--card_gs_width);
+    height : var(--card_gs_height);
+}
+
+.gw-card .wrapper{
+    height: 100%;
+    border-radius: 1px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gw-card_header{
+    width: 100%;
+    border-radius: 1px;
+    font-family: 'Arial';
+    font-size: 1mm;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5px 1px;
+    color:var(--card_header_fg);
+    background-color: var(--card_header_bg);
+}
+
+img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
+
+.gw-card .logo{
+    margin: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    color:#a31111;
+    -webkit-text-stroke-color: var(--card_header_bg);
+    -webkit-text-stroke-width: .5px;
+    text-shadow: 0px 0px 4px #000;
+}
+
+/*==================================================================
+    CARD TEAMS
+ player1
+ player2
+ guess
+==================================================================*/
+.player1{
+    background: var(--player1);
+}
+.player1_gradient{
+    background: -webkit-radial-gradient(
+        circle,
+        var(--player1)    0%, var(--player1)      5%,
+        var(--player1_l)  5%, var(--player1_l)   10%,
+        var(--player1)   10%, var(--player1)     15%,
+        var(--player1_l) 15%, var(--player1_l)   20%,
+        var(--player1)   20%, var(--player1)     25%,
+        var(--player1_l) 25%, var(--player1_l)   30%,
+        var(--player1)   30%, var(--player1)     35%,
+        var(--player1_l) 35%, var(--player1_l)   40%,
+        var(--player1)   40%, var(--player1)     45%,
+        var(--player1_l) 45%, var(--player1_l)   50%,
+        var(--player1)   50%, var(--player1)     55%,
+        var(--player1_l) 55%, var(--player1_l)   60%,
+        var(--player1)   60%, var(--player1)     65%,
+        var(--player1_l) 65%, var(--player1_l)   70%,
+        var(--player1)   70%, var(--player1)     75%,
+        var(--player1_l) 75%, var(--player1_l)   80%,
+        var(--player1)   80%, var(--player1)     85%,
+        var(--player1_l) 85%, var(--player1_l)   90%,
+        var(--player1)   90%, var(--player1)     95%,
+        var(--player1_l) 95%, var(--player1_l)  100%);
+}
+
+.player2{
+    background: var(--player2);
+}
+.player2_gradient{
+    background: -webkit-radial-gradient(
+        circle,
+        var(--player2)    0%, var(--player2)      5%,
+        var(--player2_l)  5%, var(--player2_l)   10%,
+        var(--player2)   10%, var(--player2)     15%,
+        var(--player2_l) 15%, var(--player2_l)   20%,
+        var(--player2)   20%, var(--player2)     25%,
+        var(--player2_l) 25%, var(--player2_l)   30%,
+        var(--player2)   30%, var(--player2)     35%,
+        var(--player2_l) 35%, var(--player2_l)   40%,
+        var(--player2)   40%, var(--player2)     45%,
+        var(--player2_l) 45%, var(--player2_l)   50%,
+        var(--player2)   50%, var(--player2)     55%,
+        var(--player2_l) 55%, var(--player2_l)   60%,
+        var(--player2)   60%, var(--player2)     65%,
+        var(--player2_l) 65%, var(--player2_l)   70%,
+        var(--player2)   70%, var(--player2)     75%,
+        var(--player2_l) 75%, var(--player2_l)   80%,
+        var(--player2)   80%, var(--player2)     85%,
+        var(--player2_l) 85%, var(--player2_l)   90%,
+        var(--player2)   90%, var(--player2)     95%,
+        var(--player2_l) 95%, var(--player2_l)  100%);
+}
+
+.guess{
+    background: var(--guess);
+}
+.guess_gradient{
+    background: -webkit-radial-gradient(
+        circle,  
+        var(--guess)    0%, var(--guess)      5%, 
+        var(--guess_l)  5%, var(--guess_l)   10%,
+        var(--guess)   10%, var(--guess)     15%,
+        var(--guess_l) 15%, var(--guess_l)   20%,
+        var(--guess)   20%, var(--guess)     25%,
+        var(--guess_l) 25%, var(--guess_l)   30%,
+        var(--guess)   30%, var(--guess)     35%,
+        var(--guess_l) 35%, var(--guess_l)   40%,
+        var(--guess)   40%, var(--guess)     45%,
+        var(--guess_l) 45%, var(--guess_l)   50%,
+        var(--guess)   50%, var(--guess)     55%, 
+        var(--guess_l) 55%, var(--guess_l)   60%,
+        var(--guess)   60%, var(--guess)     65%,
+        var(--guess_l) 65%, var(--guess_l)   70%,
+        var(--guess)   70%, var(--guess)     75%,
+        var(--guess_l) 75%, var(--guess_l)   80%,
+        var(--guess)   80%, var(--guess)     85%,
+        var(--guess_l) 85%, var(--guess_l)   90%,
+        var(--guess)   90%, var(--guess)     95%,
+        var(--guess_l) 95%, var(--guess_l)  100%);
+}
+
+.guess_back{
+    background: var(--guess_back);
+}
+.guess_back_gradient{
+    background: -webkit-radial-gradient(
+        circle,  
+        var(--guess_back)    0%, var(--guess_back)      5%, 
+        var(--guess_back_l)  5%, var(--guess_back_l)   10%,
+        var(--guess_back)   10%, var(--guess_back)     15%,
+        var(--guess_back_l) 15%, var(--guess_back_l)   20%,
+        var(--guess_back)   20%, var(--guess_back)     25%,
+        var(--guess_back_l) 25%, var(--guess_back_l)   30%,
+        var(--guess_back)   30%, var(--guess_back)     35%,
+        var(--guess_back_l) 35%, var(--guess_back_l)   40%,
+        var(--guess_back)   40%, var(--guess_back)     45%,
+        var(--guess_back_l) 45%, var(--guess_back_l)   50%,
+        var(--guess_back)   50%, var(--guess_back)     55%, 
+        var(--guess_back_l) 55%, var(--guess_back_l)   60%,
+        var(--guess_back)   60%, var(--guess_back)     65%,
+        var(--guess_back_l) 65%, var(--guess_back_l)   70%,
+        var(--guess_back)   70%, var(--guess_back)     75%,
+        var(--guess_back_l) 75%, var(--guess_back_l)   80%,
+        var(--guess_back)   80%, var(--guess_back)     85%,
+        var(--guess_back_l) 85%, var(--guess_back_l)   90%,
+        var(--guess_back)   90%, var(--guess_back)     95%,
+        var(--guess_back_l) 95%, var(--guess_back_l)  100%);
+}
+
+.test_card{
+    background: var(--test);
+}
+.test_card_gradient{
+    background: -webkit-radial-gradient(
+        circle,  
+        var(--test)    0%, var(--test)      5%, 
+        var(--test_l)  5%, var(--test_l)   10%,
+        var(--test)   10%, var(--test)     15%,
+        var(--test_l) 15%, var(--test_l)   20%,
+        var(--test)   20%, var(--test)     25%,
+        var(--test_l) 25%, var(--test_l)   30%,
+        var(--test)   30%, var(--test)     35%,
+        var(--test_l) 35%, var(--test_l)   40%,
+        var(--test)   40%, var(--test)     45%,
+        var(--test_l) 45%, var(--test_l)   50%,
+        var(--test)   50%, var(--test)     55%, 
+        var(--test_l) 55%, var(--test_l)   60%,
+        var(--test)   60%, var(--test)     65%,
+        var(--test_l) 65%, var(--test_l)   70%,
+        var(--test)   70%, var(--test)     75%,
+        var(--test_l) 75%, var(--test_l)   80%,
+        var(--test)   80%, var(--test)     85%,
+        var(--test_l) 85%, var(--test_l)   90%,
+        var(--test)   90%, var(--test)     95%,
+        var(--test_l) 95%, var(--test_l)  100%);
+}
