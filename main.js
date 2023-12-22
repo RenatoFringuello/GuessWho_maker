@@ -43,19 +43,36 @@ test_cb.addEventListener('change', (e)=>{
     paper.innerHTML = ``
     if (e.srcElement.checked){
         paper.innerHTML = `
-            <div class="team">
-                <div class="gw-card test_card small">
-                    <div class="wrapper test_card_gradient">
+        <div class="team">
+            <div class="front-back-wrapper">
+                <div class="gw-card guess small card-bound">
+                    <div class="wrapper guess_gradient">
+                        <div class="gw-card_header">prova</div>
+                        <img src="img/user.png">
+                    </div>
+                </div>
+                <div class="gw-card guess small">
+                    <div class="wrapper guess_gradient">
                         <div class="logo">?</div>
                     </div>
                 </div>
-            
-                <div class="gw-card test_card big">
-                    <div class="wrapper test_card_gradient">
+            </div>
+        </div>
+        <div class="team">
+            <div class="front-back-wrapper">
+                <div class="gw-card guess big card-bound">
+                    <div class="wrapper guess_gradient">
+                        <div class="gw-card_header">prova</div>
+                        <img src="img/user.png">
+                    </div>
+                </div>
+                <div class="gw-card guess big">
+                    <div class="wrapper guess_gradient">
                         <div class="logo">?</div>
                     </div>
                 </div>
-            </div>`
+            </div>
+        </div>`
     }
     else{
         // 3 teams

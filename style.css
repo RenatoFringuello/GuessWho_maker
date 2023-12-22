@@ -13,10 +13,10 @@
     --card_header_bg : #fff;
 
     --card_thickness : 0.25mm;
-    --card_pl_height : 12.7mm;
-    --card_pl_width  :  8.9mm;
-    --card_gs_height : 16.4mm;
-    --card_gs_width  : 10.9mm;
+    --card_pl_height : 3cm;
+    --card_pl_width  : 1.7cm;
+    --card_gs_height : 4cm;
+    --card_gs_width  : 2.4cm;
 }
 
 *,
@@ -79,7 +79,10 @@ button:hover{
  h:  12,7mm 
 ==================================================================*/
 .gw-card{
-    padding: 2.5px;
+    padding: calc(var(--card_pl_width) * 0.08);
+}
+.gw-card.big{
+    padding: calc(var(--card_gs_width) * 0.08);
 }
 
 .gw-card.small{
@@ -94,25 +97,33 @@ button:hover{
 
 .gw-card .wrapper{
     height: 100%;
-    border-radius: 1px;
+    border-radius: calc(var(--card_pl_width) * 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
+.gw-card.big .wrapper{
+    border-radius: calc(var(--card_gs_width) * 0.05);
+}
 
 .gw-card_header{
     width: 100%;
-    border-radius: 1px;
+    border-radius: inherit;
     font-family: 'Arial';
-    font-size: 1mm;
+    font-size: calc(var(--card_pl_width) * 0.13);
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    padding: 0.5px 1px;
+    padding: calc(var(--card_pl_width) * 0.05) 0;
     color:var(--card_header_fg);
     background-color: var(--card_header_bg);
+}
+.big .gw-card_header{
+    font-size: calc(var(--card_gs_width) * 0.13);
+    padding:   calc(var(--card_gs_width) * 0.03);
+
 }
 
 img{
@@ -125,12 +136,18 @@ img{
 
 .gw-card .logo{
     margin: auto;
-    font-size: 2rem;
+    font-size: var(--card_pl_width);
     font-weight: bold;
     color:#a31111;
     -webkit-text-stroke-color: var(--card_header_bg);
-    -webkit-text-stroke-width: .5px;
-    text-shadow: 0px 0px 4px #000;
+    -webkit-text-stroke-width: calc(var(--card_pl_width) * 0.02);
+    text-shadow: 0px 0px calc(var(--card_pl_width) * 0.1) #000;
+}
+
+.big.gw-card .logo{
+    font-size: var(--card_gs_width);
+    -webkit-text-stroke-width: calc(var(--card_gs_width) * 0.02);
+    text-shadow: 0px 0px calc(var(--card_gs_width) * 0.1) #000;
 }
 
 /*==================================================================
@@ -249,32 +266,4 @@ img{
         var(--guess_back_l) 85%, var(--guess_back_l)   90%,
         var(--guess_back)   90%, var(--guess_back)     95%,
         var(--guess_back_l) 95%, var(--guess_back_l)  100%);
-}
-
-.test_card{
-    background: var(--test);
-}
-.test_card_gradient{
-    background: -webkit-radial-gradient(
-        circle,  
-        var(--test)    0%, var(--test)      5%, 
-        var(--test_l)  5%, var(--test_l)   10%,
-        var(--test)   10%, var(--test)     15%,
-        var(--test_l) 15%, var(--test_l)   20%,
-        var(--test)   20%, var(--test)     25%,
-        var(--test_l) 25%, var(--test_l)   30%,
-        var(--test)   30%, var(--test)     35%,
-        var(--test_l) 35%, var(--test_l)   40%,
-        var(--test)   40%, var(--test)     45%,
-        var(--test_l) 45%, var(--test_l)   50%,
-        var(--test)   50%, var(--test)     55%, 
-        var(--test_l) 55%, var(--test_l)   60%,
-        var(--test)   60%, var(--test)     65%,
-        var(--test_l) 65%, var(--test_l)   70%,
-        var(--test)   70%, var(--test)     75%,
-        var(--test_l) 75%, var(--test_l)   80%,
-        var(--test)   80%, var(--test)     85%,
-        var(--test_l) 85%, var(--test_l)   90%,
-        var(--test)   90%, var(--test)     95%,
-        var(--test_l) 95%, var(--test_l)  100%);
 }
