@@ -5,51 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuessWho personaliser</title>
 
-    <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> -->
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
-    <header id="header">
+    <header>
         <label for="test-checkbox">test card size
             <input type="checkbox" name="test_cb" id="test-checkbox" checked>
         </label>
-        <button id="header-collapse">Print</button>
+        <select class="btn" type="checkbox" name="to-print" id="to-print"></select>
+        <button class="btn" id="print">Print</button>
     </header>
 
-    <main id="paper">
-        <div class="team">
-            <div class="front-back-wrapper">
-                <div class="gw-card guess small card-bound">
-                    <div class="wrapper guess_gradient">
-                        <div class="gw-card_header">prova</div>
-                        <img src="img/user.png">
-                    </div>
-                </div>
-                <div class="gw-card guess small">
-                    <div class="wrapper guess_gradient">
-                        <div class="logo">?</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="team">
-            <div class="front-back-wrapper">
-                <div class="gw-card guess big card-bound">
-                    <div class="wrapper guess_gradient">
-                        <div class="gw-card_header">prova</div>
-                        <img src="img/user.png">
-                    </div>
-                </div>
-                <div class="gw-card guess big">
-                    <div class="wrapper guess_gradient">
-                        <div class="logo">?</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <main>
+        <section>
+            <h3>IF SOME CARD ARE CROPPED OFF DURING THE PRINT PREVIEW, ADJUST THE MARGIN OF THE PAPER</h3>
+            <!-- <h1>GUESS WHO PERSONALIZED</h1>
+            <h2>just import all the image in the folder img and set the names</h2> -->
+        </section>
+        <div id="paper"></div>
     </main>
 
     <script src="main.js"></script>
