@@ -22,14 +22,27 @@ let players    = [
     "Dorian", 
     "Chaol"
 ]
+
+const input_sizes_ids = [
+    'card-pl-width',
+    'card-pl-height',
+    'card-gs-width',
+    'card-gs-height'
+]
+
 // let is_loading = true
 
 // DOM elements
-const paper      = document.getElementById('paper')
-const print_btn  = document.getElementById('print')
-const test_cb    = document.getElementById('test-checkbox')
-const to_print   = document.getElementById('to-print')
-test_cb.checked  = false
+const paper           = document.getElementById('paper')
+const print_btn       = document.getElementById('print')
+const test_cb         = document.getElementById('test-checkbox')
+// const team_card_w_in  = document.getElementById('card-pl-width')
+// const team_card_h_in  = document.getElementById('card-pl-height')
+// const guess_card_w_in = document.getElementById('card-gs-width')
+// const guess_card_h_in = document.getElementById('card-gs-height')
+const rootStyles      = document.documentElement
+const to_print        = document.getElementById('to-print')
+test_cb.checked       = false
 
 // fn
 // function showLoader(){
@@ -201,6 +214,16 @@ function showSet(is_test){
     }
 }
 
+function initSize(input_sizes_ids){
+    input_sizes_ids.forEach((id)=>{ 
+        // const id_cp = id // to reset its value each iteration
+        const element = document.getElementById(id)
+        id = id.replaceAll('-', '_')
+        // get the value from :root
+        element.setAttribute('value', getComputedStyle(rootStyles).getPropertyValue(`--${id}`).replace('cm', ''))
+    })
+}
+
 //listen to the btn
 print_btn.addEventListener('click', (e)=>{
     const to_print   = document.getElementById('to-print')
@@ -212,5 +235,24 @@ test_cb.addEventListener('change', (e)=>{
     loadPage()
 })
 
-// init 
+
+// listen to the all inputs size
+input_sizes_ids.forEach((input_id)=>{
+    const input = document.getElementById(input_id)
+
+    input.addEventListener('change', (e)=>{
+        let in_id = e.srcElement.id
+        // change root variables
+        in_id = in_id.replaceAll('-', '_')
+        rootStyles.style.setProperty(`--${in_id}`, `${input.value}cm`)
+
+        // reload page
+        loadPage()
+    })
+})
+
+// get the size of the cards and set it to the value
+initSize(input_sizes_ids)
+
+// load page
 loadPage()
