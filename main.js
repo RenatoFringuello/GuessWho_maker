@@ -127,6 +127,7 @@ function showSet(is_test){
     paper.innerHTML = ``
     if (is_test){
         paper.innerHTML = `
+        <div class="team_name">TEST (DON'T forget to print on grayscale!)</div>
         <div class="team">
             <div class="front-back-wrapper">
                 <div class="gw-card guess small card-bound">
@@ -162,7 +163,7 @@ function showSet(is_test){
         // 3 teams
         for (let i = 0; i < 3; i++) {
             // get the team type
-            team_type      = (i == 0) ? 'team_1'    : (i == 1) ? 'team_2' : 'guess'
+            team_type      = (i == 0) ? 'team_1'     : (i == 1) ? 'team_2' : 'guess'
             team_back_type = (i  > 1) ? 'guess_back' : team_type
             card_size      = (i  > 1) ? 'big'        : 'small'
 
