@@ -11,19 +11,35 @@
 <body>
     
     <header>
-        <label for="test-checkbox">test card size
-            <input type="checkbox" name="test_cb" id="test-checkbox" checked>
-        </label>
-        <select class="btn" type="checkbox" name="to-print" id="to-print"></select>
-        <button class="btn" id="print">Print</button>
+        <div class="sizes">
+            <div class="input-wrapper">
+                <input class="btn" type="number" name="card-pl-width"  id="card-pl-width"  placeholder="team card width in cm">
+                <input class="btn" type="number" name="card-pl-height" id="card-pl-height" placeholder="team card height in cm">
+            </div>
+            <div class="input-wrapper">
+                <input class="btn" type="number" name="card-gs-width"  id="card-gs-width"  placeholder="guess card width in cm">
+                <input class="btn" type="number" name="card-gs-height" id="card-gs-height" placeholder="guess card height in cm">
+            </div>
+        </div>
+        <div class="filters">
+            <label for="test-checkbox">test card size
+                <input type="checkbox" name="test_cb" id="test-checkbox" checked>
+            </label>
+            <select class="btn" type="checkbox" name="to-print" id="to-print"></select>
+        </div>
+        <section>
+            <div class="hero">
+                <div class="description">
+                    <h1 class="title">GUESS WHO PERSONALIZED</h1>
+                    <h2 class="subtitle">Just import all the image in the folder img and set the names</h2>
+                    <h3 class="hint">If some cards are cropped off during the print preview, adjust the margin of the paper.</h3>
+                </div>
+                <button class="btn" id="print">Print</button>
+            </div>
+        </section>
     </header>
 
     <main>
-        <section>
-            <h3>IF SOME CARD ARE CROPPED OFF DURING THE PRINT PREVIEW, ADJUST THE MARGIN OF THE PAPER</h3>
-            <!-- <h1>GUESS WHO PERSONALIZED</h1>
-            <h2>just import all the image in the folder img and set the names</h2> -->
-        </section>
         <div id="paper"></div>
     </main>
 
