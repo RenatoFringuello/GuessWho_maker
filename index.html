@@ -15,8 +15,8 @@
             <div class="input-wrapper">
                 <div class="input-container">
                     <h1>Team card width</h1>
-                    <label class="btn" for="card-pl-width">
-                        <input type="number" name="card-pl-width"  id="card-pl-width"  placeholder="team card width in cm">
+                    <label class="btn" for="card-pl-width" >
+                        <input type="number" name="card-pl-width" id="card-pl-width" placeholder="team card width in cm">
                         <span>cm</span>
                     </label>
                 </div>
@@ -31,14 +31,14 @@
             <div class="input-wrapper">
                 <div class="input-container">
                     <h1>Guess card height</h1>
-                    <label class="btn" for="card-gs-width">
-                        <input type="number" name="card-gs-width"  id="card-gs-width"  placeholder="guess card width in cm">
+                    <label class="btn" for="card-gs-width" >
+                        <input type="number" name="card-gs-width" id="card-gs-width" placeholder="guess card width in cm">
                         <span>cm</span>
                     </label>
                 </div>
                 <div class="input-container">
                     <h1>Guess card height</h1>
-                    <label class="btn" for="card-gs-height">
+                    <label class="btn" for="card-gs-height" >
                         <input type="number" name="card-gs-height" id="card-gs-height" placeholder="guess card height in cm">
                         <span>cm</span>
                     </label>
@@ -57,13 +57,30 @@
                     <h1 class="title">GUESS WHO PERSONALIZED</h1>
                     <h2 class="subtitle">Just import all the image in the folder img and set the names</h2>
                     <h3 class="hint">If some cards are cropped off during the print preview, adjust the margin of the paper.</h3>
+                    <button class="btn" id="print">Print</button>
                 </div>
-                <button class="btn" id="print">Print</button>
+                <div class="game-img">
+                    <img src="res/assets/game_box.png">
+                </div>
             </div>
         </section>
     </header>
 
     <main>
+        <section id="tutorial-sec">
+            <div class="title">TUTORIAL</div>
+            <div class="row reverse">
+                <div class="content">
+                    <div class="subtitle">Select all the character to use and remove the background</div>
+                    <ul>
+                        <li>you can use the <a target="_blank" href="https://support.apple.com/guide/preview/extract-an-image-or-remove-a-background-prvw15636/mac#apd320b3b1b750a4">Apple's tools to remove the background</a></li>
+                        <li>or you can use  <a target="_blank" href="https://remove.bg">remove.bg</a></li>
+                    </ul>
+                </div>
+                <img src="res/assets/remove_bg.png" alt="image">
+            </div>
+            , crop the image to 4:5 and drop it to the section
+        </section>
         <section>
             <div class="title">PREVIEW</div>
             <div id="paper"></div>
