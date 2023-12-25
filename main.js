@@ -224,7 +224,7 @@ function initSize(input_sizes_ids){
         const element = document.getElementById(id)
         id = id.replaceAll('-', '_')
         // get the value from :root
-        element.setAttribute('value', getComputedStyle(rootStyles).getPropertyValue(`--${id}`).replace('cm', ''))
+        element.value = getComputedStyle(rootStyles).getPropertyValue(`--${id}`).replace('cm', '')
     })
 }
 
@@ -248,6 +248,7 @@ input_sizes_ids.forEach((input_id)=>{
         let in_id = e.srcElement.id
         // change root variables
         in_id = in_id.replaceAll('-', '_')
+
         rootStyles.style.setProperty(`--${in_id}`, `${input.value}cm`)
 
         // reload page
