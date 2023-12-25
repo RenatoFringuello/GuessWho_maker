@@ -36,6 +36,10 @@ body{
     font-family: 'Arial';
 }
 
+li{
+    margin-left: 1.5rem;
+}
+
 input{
     border: 0;
     background: #0000;
@@ -113,13 +117,25 @@ header > section{
     flex-grow: 1;
 }
 header > section .hero{
-    margin: auto 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 header > section .hero .description{
     max-width: 600px;
 }
 header > section .hero .description > * {
     margin-bottom: 5px;
+}
+header > section .hero .game-img img{
+    object-fit: contain;
+    transform:rotateY(180deg) rotateZ(-10deg) ;
+    width: 100%;
+    max-width: 450px;
+    filter: drop-shadow(0px 25px 25px #0006);
+    animation: bounce 3s ease-in-out infinite ;
 }
 
 main > section{
@@ -128,6 +144,19 @@ main > section{
 
 main > section .title{
     text-align: center;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row.reverse{
+    flex-direction: row-reverse;
+}
+.row img{
+    object-fit: contain;
+    max-width: 270px;
 }
 
 label, input{cursor: pointer;}
@@ -145,10 +174,10 @@ label:hover{border-bottom: 1px solid #000;}
 }
 .btn:hover{
     background-color: #fff;
-    border-bottom: 2px solid #0005;
+    border-bottom: 2px solid #fffb;
 }
-.btn[id^="card-gs"]{
-    color:var(--guess);
+.btn[for^="card-gs"]{
+    color:var(--guess) !important;
 }
 
 button.btn{
@@ -250,6 +279,10 @@ button.btn{
     font-size: var(--card_gs_width);
     -webkit-text-stroke-width: calc(var(--card_gs_width) * 0.02);
     text-shadow: 0px 0px calc(var(--card_gs_width) * 0.1) #000;
+}
+
+#tutorial-sec .row{
+    padding: 0 4rem;
 }
 
 /*==================================================================
@@ -390,12 +423,36 @@ button.btn{
 }
 
 /*===================================================
+                       MEDIA
+===================================================*/
+@media only screen and (max-width : 992px){
+    .game-img{
+        display: none;
+    }
+}
+
+/*===================================================
                        KEYFRAMES
 ===================================================*/
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0% {
+        transform:rotateY(180deg) rotateZ(-10deg) scale(1);
+        filter: drop-shadow(0px 25px 25px #0006);
+    }
+    50% {
+        transform:rotateY(180deg) rotateZ(-10deg) scale(1.05);
+        filter: drop-shadow(0px 25px 25px #0004);
+    }
+    100% {
+        transform: rotateY(180deg) rotateZ(-10deg) scale(1);
+        filter: drop-shadow(0px 25px 25px #0006);
+    }
 }
 
 @keyframes gradientAnimation {
