@@ -119,7 +119,11 @@ function printSet(index){
             <title>Print</title>
         </head>
         <body>
-            ${contentToPrint}
+            <main>
+                <section>
+                    ${contentToPrint}
+                </section>
+            </main>
         </body>
       </html>
     `);
