@@ -140,13 +140,13 @@ function showSet(is_test){
     paper.innerHTML = ``
     if (is_test){
         paper.innerHTML = `
-        <div class="team_name">TEST (DON'T forget to print on grayscale!)</div>
+        <div class="team_name subtitle">TEST (DON'T forget to print on grayscale!)</div>
         <div class="team">
             <div class="front-back-wrapper">
                 <div class="gw-card guess small card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="img/user.png">
+                        <img src="res/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess small">
@@ -161,7 +161,7 @@ function showSet(is_test){
                 <div class="gw-card guess big card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="img/user.png">
+                        <img src="res/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess big">
@@ -181,7 +181,7 @@ function showSet(is_test){
             card_size      = (i  > 1) ? 'big'        : 'small'
 
             // inject team name
-            paper.innerHTML += `<div class="team_name">${team_type.replace('_', ' ')}</div>`
+            paper.innerHTML += `<div class="team_name subtitle">${team_type.replace('_', ' ')}</div>`
             
             // init the team
             const team  = document.createElement('div')
@@ -194,7 +194,7 @@ function showSet(is_test){
                     <div class="gw-card ${team_type} ${card_size} card-bound">
                         <div class="wrapper ${team_type}_gradient">
                             <div class="gw-card_header">${player}</div>
-                            <img src="img/${player}.png">
+                            <img src="res/img/${player}.png">
                         </div>
                     </div>
                     <div class="gw-card ${team_back_type} ${card_size}">
