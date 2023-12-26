@@ -1,12 +1,9 @@
 :root{
+    --light_color    : #ffffff48;
     --team_1         : #006dd4;
-    --team_1_l       : #0f9bf2;
     --team_2         : #db2020;
-    --team_2_l       : #ff7878;
     --guess          : #e4b700;
-    --guess_l        : #ffd738;
     --guess_back     : #6ccc61;
-    --guess_back_l   : #97f38c;
     --hint           : #fffa;
     --test           : #a6a6a6;
     --test_l         : #dddddd;
@@ -73,14 +70,25 @@ header{
     font-size: 1.3rem !important;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     color: var(--card_header_bg);
-    background: linear-gradient(45deg, var(--guess_l), var(--team_2_l), var(--team_1_l), var(--guess_back_l));
+    background: linear-gradient(45deg, var(--team_1), var(--team_2), var(--guess), var(--guess_back));
     background-size: 400% 400%;
     animation: gradientAnimation 15s infinite;
 }
+header::after{
+    content: '';
+    background-color: var(--light_color);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+}
 header > *{
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 header .filters,
@@ -205,14 +213,22 @@ label:hover{border-bottom: 1px solid #000;}
     color: #000 !important;;
 }
 
+.team_wrapper{
+    border-radius: 20px;
+    padding: 1rem 1rem 0.15rem;
+    margin-bottom: 1rem ;
+    color: white;
+}
 .team{
+    border-radius: .5rem;
+    padding: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 1rem;
     gap: 1rem;
 }
-.team_name{
+.team_wrapper .team_name{
     text-transform: uppercase;
 }
 
@@ -314,85 +330,94 @@ label:hover{border-bottom: 1px solid #000;}
 .team_1{
     background: var(--team_1);
 }
+.team_1 .team{
+    background-color: var(--light_color);
+}
 .team_1_gradient{
     background: -webkit-radial-gradient(
         circle,
         var(--team_1)    0%, var(--team_1)      5%,
-        var(--team_1_l)  5%, var(--team_1_l)   10%,
+        var(--light_color)  5%, var(--light_color)   10%,
         var(--team_1)   10%, var(--team_1)     15%,
-        var(--team_1_l) 15%, var(--team_1_l)   20%,
+        var(--light_color) 15%, var(--light_color)   20%,
         var(--team_1)   20%, var(--team_1)     25%,
-        var(--team_1_l) 25%, var(--team_1_l)   30%,
+        var(--light_color) 25%, var(--light_color)   30%,
         var(--team_1)   30%, var(--team_1)     35%,
-        var(--team_1_l) 35%, var(--team_1_l)   40%,
+        var(--light_color) 35%, var(--light_color)   40%,
         var(--team_1)   40%, var(--team_1)     45%,
-        var(--team_1_l) 45%, var(--team_1_l)   50%,
+        var(--light_color) 45%, var(--light_color)   50%,
         var(--team_1)   50%, var(--team_1)     55%,
-        var(--team_1_l) 55%, var(--team_1_l)   60%,
+        var(--light_color) 55%, var(--light_color)   60%,
         var(--team_1)   60%, var(--team_1)     65%,
-        var(--team_1_l) 65%, var(--team_1_l)   70%,
+        var(--light_color) 65%, var(--light_color)   70%,
         var(--team_1)   70%, var(--team_1)     75%,
-        var(--team_1_l) 75%, var(--team_1_l)   80%,
+        var(--light_color) 75%, var(--light_color)   80%,
         var(--team_1)   80%, var(--team_1)     85%,
-        var(--team_1_l) 85%, var(--team_1_l)   90%,
+        var(--light_color) 85%, var(--light_color)   90%,
         var(--team_1)   90%, var(--team_1)     95%,
-        var(--team_1_l) 95%, var(--team_1_l)  100%);
+        var(--light_color) 95%, var(--light_color)  100%);
 }
 
 .team_2{
     background: var(--team_2);
 }
+.team_2 .team{
+    background-color: var(--light_color);
+}
 .team_2_gradient{
     background: -webkit-radial-gradient(
         circle,
         var(--team_2)    0%, var(--team_2)      5%,
-        var(--team_2_l)  5%, var(--team_2_l)   10%,
+        var(--light_color)  5%, var(--light_color)   10%,
         var(--team_2)   10%, var(--team_2)     15%,
-        var(--team_2_l) 15%, var(--team_2_l)   20%,
+        var(--light_color) 15%, var(--light_color)   20%,
         var(--team_2)   20%, var(--team_2)     25%,
-        var(--team_2_l) 25%, var(--team_2_l)   30%,
+        var(--light_color) 25%, var(--light_color)   30%,
         var(--team_2)   30%, var(--team_2)     35%,
-        var(--team_2_l) 35%, var(--team_2_l)   40%,
+        var(--light_color) 35%, var(--light_color)   40%,
         var(--team_2)   40%, var(--team_2)     45%,
-        var(--team_2_l) 45%, var(--team_2_l)   50%,
+        var(--light_color) 45%, var(--light_color)   50%,
         var(--team_2)   50%, var(--team_2)     55%,
-        var(--team_2_l) 55%, var(--team_2_l)   60%,
+        var(--light_color) 55%, var(--light_color)   60%,
         var(--team_2)   60%, var(--team_2)     65%,
-        var(--team_2_l) 65%, var(--team_2_l)   70%,
+        var(--light_color) 65%, var(--light_color)   70%,
         var(--team_2)   70%, var(--team_2)     75%,
-        var(--team_2_l) 75%, var(--team_2_l)   80%,
+        var(--light_color) 75%, var(--light_color)   80%,
         var(--team_2)   80%, var(--team_2)     85%,
-        var(--team_2_l) 85%, var(--team_2_l)   90%,
+        var(--light_color) 85%, var(--light_color)   90%,
         var(--team_2)   90%, var(--team_2)     95%,
-        var(--team_2_l) 95%, var(--team_2_l)  100%);
+        var(--light_color) 95%, var(--light_color)  100%);
 }
 
 .guess{
     background: var(--guess);
 }
+.guess .team{
+    background-color: var(--light_color);
+}
 .guess_gradient{
     background: -webkit-radial-gradient(
         circle,  
         var(--guess)    0%, var(--guess)      5%, 
-        var(--guess_l)  5%, var(--guess_l)   10%,
+        var(--light_color)  5%, var(--light_color)   10%,
         var(--guess)   10%, var(--guess)     15%,
-        var(--guess_l) 15%, var(--guess_l)   20%,
+        var(--light_color) 15%, var(--light_color)   20%,
         var(--guess)   20%, var(--guess)     25%,
-        var(--guess_l) 25%, var(--guess_l)   30%,
+        var(--light_color) 25%, var(--light_color)   30%,
         var(--guess)   30%, var(--guess)     35%,
-        var(--guess_l) 35%, var(--guess_l)   40%,
+        var(--light_color) 35%, var(--light_color)   40%,
         var(--guess)   40%, var(--guess)     45%,
-        var(--guess_l) 45%, var(--guess_l)   50%,
+        var(--light_color) 45%, var(--light_color)   50%,
         var(--guess)   50%, var(--guess)     55%, 
-        var(--guess_l) 55%, var(--guess_l)   60%,
+        var(--light_color) 55%, var(--light_color)   60%,
         var(--guess)   60%, var(--guess)     65%,
-        var(--guess_l) 65%, var(--guess_l)   70%,
+        var(--light_color) 65%, var(--light_color)   70%,
         var(--guess)   70%, var(--guess)     75%,
-        var(--guess_l) 75%, var(--guess_l)   80%,
+        var(--light_color) 75%, var(--light_color)   80%,
         var(--guess)   80%, var(--guess)     85%,
-        var(--guess_l) 85%, var(--guess_l)   90%,
+        var(--light_color) 85%, var(--light_color)   90%,
         var(--guess)   90%, var(--guess)     95%,
-        var(--guess_l) 95%, var(--guess_l)  100%);
+        var(--light_color) 95%, var(--light_color)  100%);
 }
 
 .guess_back{
@@ -402,25 +427,25 @@ label:hover{border-bottom: 1px solid #000;}
     background: -webkit-radial-gradient(
         circle,  
         var(--guess_back)    0%, var(--guess_back)      5%, 
-        var(--guess_back_l)  5%, var(--guess_back_l)   10%,
+        var(--light_color)  5%, var(--light_color)   10%,
         var(--guess_back)   10%, var(--guess_back)     15%,
-        var(--guess_back_l) 15%, var(--guess_back_l)   20%,
+        var(--light_color) 15%, var(--light_color)   20%,
         var(--guess_back)   20%, var(--guess_back)     25%,
-        var(--guess_back_l) 25%, var(--guess_back_l)   30%,
+        var(--light_color) 25%, var(--light_color)   30%,
         var(--guess_back)   30%, var(--guess_back)     35%,
-        var(--guess_back_l) 35%, var(--guess_back_l)   40%,
+        var(--light_color) 35%, var(--light_color)   40%,
         var(--guess_back)   40%, var(--guess_back)     45%,
-        var(--guess_back_l) 45%, var(--guess_back_l)   50%,
+        var(--light_color) 45%, var(--light_color)   50%,
         var(--guess_back)   50%, var(--guess_back)     55%, 
-        var(--guess_back_l) 55%, var(--guess_back_l)   60%,
+        var(--light_color) 55%, var(--light_color)   60%,
         var(--guess_back)   60%, var(--guess_back)     65%,
-        var(--guess_back_l) 65%, var(--guess_back_l)   70%,
+        var(--light_color) 65%, var(--light_color)   70%,
         var(--guess_back)   70%, var(--guess_back)     75%,
-        var(--guess_back_l) 75%, var(--guess_back_l)   80%,
+        var(--light_color) 75%, var(--light_color)   80%,
         var(--guess_back)   80%, var(--guess_back)     85%,
-        var(--guess_back_l) 85%, var(--guess_back_l)   90%,
+        var(--light_color) 85%, var(--light_color)   90%,
         var(--guess_back)   90%, var(--guess_back)     95%,
-        var(--guess_back_l) 95%, var(--guess_back_l)  100%);
+        var(--light_color) 95%, var(--light_color)  100%);
 }
 
 /*===================================================
