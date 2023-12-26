@@ -179,14 +179,14 @@ function showSet(is_test){
             team_type      = (i == 0) ? 'team_1'     : (i == 1) ? 'team_2' : 'guess'
             team_back_type = (i  > 1) ? 'guess_back' : team_type
             card_size      = (i  > 1) ? 'big'        : 'small'
-
-            // inject team name
-            paper.innerHTML += `<div class="team_name subtitle">${team_type.replace('_', ' ')}</div>`
             
             // init the team wrapper
             const team_wrapper  = document.createElement('div')
-            team_wrapper.className = 'team_wrapper'
-            team_wrapper.id = team_type
+            team_wrapper.className = `team_wrapper ${team_type}`
+
+            // inject team name
+            team_wrapper.innerHTML += `<div class="team_name subtitle">${team_type.replace('_', ' ')}</div>`
+
             // init the team
             const team  = document.createElement('div')
             team.className = 'team'
@@ -212,8 +212,11 @@ function showSet(is_test){
                 team.innerHTML += card
             })
 
+            team_wrapper.appendChild(team)
+            team_wrapper.appendChild(team)
+
             // add the team to the paper
-            paper.appendChild(team)
+            paper.appendChild(team_wrapper)
         }
     }
 }
