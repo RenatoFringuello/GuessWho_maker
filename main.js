@@ -36,10 +36,6 @@ const input_sizes_ids = [
 const paper           = document.getElementById('paper')
 const print_btn       = document.getElementById('print')
 const test_cb         = document.getElementById('test-checkbox')
-// const team_card_w_in  = document.getElementById('card-pl-width')
-// const team_card_h_in  = document.getElementById('card-pl-height')
-// const guess_card_w_in = document.getElementById('card-gs-width')
-// const guess_card_h_in = document.getElementById('card-gs-height')
 const rootStyles      = document.documentElement
 const to_print        = document.getElementById('to-print')
 test_cb.checked       = false
@@ -80,7 +76,7 @@ function setSelectToPrint(is_test, to_print){
         // append team, guess, all
         appendHTML += `
         <option value="0">ALL</option>>
-        <option value="1">TEAM 1</option>
+        <option value="1">TEAM</option>
         <option value="2">GUESS</option>`
     }
     else{
@@ -187,6 +183,10 @@ function showSet(is_test){
             // inject team name
             paper.innerHTML += `<div class="team_name subtitle">${team_type.replace('_', ' ')}</div>`
             
+            // init the team wrapper
+            const team_wrapper  = document.createElement('div')
+            team_wrapper.className = 'team_wrapper'
+            team_wrapper.id = team_type
             // init the team
             const team  = document.createElement('div')
             team.className = 'team'
@@ -238,7 +238,6 @@ print_btn.addEventListener('click', (e)=>{
 test_cb.addEventListener('change', (e)=>{
     loadPage()
 })
-
 
 // listen to the all inputs size
 input_sizes_ids.forEach((input_id)=>{
