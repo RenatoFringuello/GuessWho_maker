@@ -36,6 +36,10 @@ body{
     font-family: 'Arial';
 }
 
+a{
+    text-decoration: none;
+}
+
 li{
     margin-left: 1.5rem;
 }
@@ -46,12 +50,12 @@ input{
 }
 
 .title{
-    font-size: 4.2rem;
+    font-size: clamp(2rem, 7dvw ,4.2rem);
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 .subtitle{
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 3dvw ,1.3rem);
     font-weight: normal;
     margin-bottom: 1rem;
 }
@@ -93,7 +97,7 @@ header .sizes .input-wrapper{
     display: flex;
     gap : 10px;
     flex-grow: 1;
-    flex-basis: 28rem;
+    /* flex-basis: 28rem; */
 }
 header .sizes .input-wrapper .input-container{
     width: 100%;
@@ -109,6 +113,7 @@ header .sizes .input-wrapper .input-container label{
 }
 header .sizes .input-wrapper .input-container label input{
     flex-grow: 1;
+    width: 70px;
 }
 
 header > section{
@@ -138,7 +143,7 @@ header > section .hero .game-img img{
     animation: bounce 3s ease-in-out infinite ;
 }
 
-main > section{
+main #paper{
     padding: 1rem;
 }
 
@@ -150,13 +155,27 @@ main > section .title{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+}
+.row:nth-child(even){
+    background-color: #0003;
 }
 .row.reverse{
     flex-direction: row-reverse;
 }
-.row img{
+.row > div {
+    width: 50%;
+}
+.row .img-container {
+    display: flex;
+    justify-content: right;
+}
+.row.reverse .img-container{
+    justify-content: left;
+}
+.row .img-container img{
     object-fit: contain;
-    max-width: 270px;
+    max-width: 230px;
 }
 
 label, input{cursor: pointer;}
@@ -164,7 +183,7 @@ label{border-bottom: 1px solid #0000;}
 label:hover{border-bottom: 1px solid #000;}
 
 .btn{
-    padding: .5rem 1rem;
+    padding: .5rem 1rem !important;
     background-color: #fffb;
     border: none;
     border-bottom: 2px solid;
@@ -180,9 +199,10 @@ label:hover{border-bottom: 1px solid #000;}
     color:var(--guess) !important;
 }
 
-button.btn{
-    font-size: 1.5rem;
-    min-width: 200px;
+.btn.call-to-action{
+    max-width: 200px;
+    margin-top: 1rem;
+    color: #000 !important;;
 }
 
 .team{
@@ -282,7 +302,7 @@ button.btn{
 }
 
 #tutorial-sec .row{
-    padding: 0 4rem;
+    padding: 1rem 10%;
 }
 
 /*==================================================================
@@ -425,9 +445,25 @@ button.btn{
 /*===================================================
                        MEDIA
 ===================================================*/
-@media only screen and (max-width : 992px){
+@media only screen and (max-width : 1000px){
     .game-img{
         display: none;
+    }
+
+    #tutorial-sec .row{
+        padding: 1rem;
+    }
+    
+    #tutorial-sec .row > div{
+        width: 100%;
+    }
+
+    #tutorial-sec .row > div.content div:first-child{
+        text-align: center;
+    }
+    .row .img-container{
+        justify-content: center;
+        padding-top: 1rem;
     }
 }
 
