@@ -7,6 +7,23 @@
 
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        #dropArea {
+          border: 2px dashed #3498db;
+          padding: 20px;
+          text-align: center;
+        }
+    
+        #dropArea.dragover {
+          background-color: #f0f0f0;
+        }
+    
+        img {
+          max-width: 100%;
+          max-height: 200px;
+          margin-top: 10px;
+        }
+      </style>
 </head>
 <body>
     
@@ -84,24 +101,116 @@
             </div>
             <div class="row">
                 <div class="content">
-                    <div class="subtitle">Select all the character to use and remove the background</div>
+                    <div class="subtitle">Drag and Drop all the images</div>
                     <ul>
-                        <li>you can use the <a target="_blank" href="https://support.apple.com/guide/preview/extract-an-image-or-remove-a-background-prvw15636/mac#apd320b3b1b750a4">Apple's tools to remove the background</a></li>
-                        <li>or you can use  <a target="_blank" href="https://remove.bg">remove.bg</a></li>
+                        <li>You can add more player by drag and drop</li>
+                        <li>And you can remove by clicking the x button in the corner of each image</li>
                     </ul>
                 </div>
                 <div class="img-container">
                     <img src="res/assets/remove_bg.png" alt="image">
                 </div>
             </div>
-            , crop the image to 4:5 and drop it to the section
+            <div class="row" id="card-example">
+                <div class="content">
+                    <div class="subtitle">Test the size of the card</div>
+                    <ul>
+                        <li>Get the size of the card that fit better to you game table (the default values are for the grab and go edition)</li>
+                        <li>Resize the team card</li>
+                        <li>Then the guess card</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <div class="front-back-wrapper">
+                        <div class="gw-card team_2 big card-bound">
+                            <div class="wrapper team_2_gradient">
+                                <div class="gw-card_header">user</div>
+                                <img src="res/assets/user.png" >
+                            </div>
+                        </div>
+                        <div class="gw-card team_2 big">
+                            <div class="wrapper team_2_gradient">
+                                <div class="logo">?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="content">
+                    <div class="subtitle">Crop the image to the format of the card (optional)</div>
+                    <div>for example to 4:5 (recommended for the grab and go edition)</div>
+                    <ul>
+                        <li>you can use the <a target="_blank" href="https://support.apple.com/it-it/guide/preview/prvw2015/mac#prvwb06e74c6">Apple's tools to resize the image</a></li>
+                        <li>or use the phone tools</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <div class="ratio">
+                        <img src="res/assets/ratio.png" alt="image">
+                    </div>
+                </div>
+            </div>
         </section>
-        <section>
+        <section id="preview">
             <div class="title">PREVIEW</div>
             <div id="paper"></div>
         </section>
     </main>
 
+    <div id="dropArea" 
+       ondragenter="handleDragEnter(event)" 
+       ondragover="handleDragOver(event)" 
+       ondragleave="handleDragLeave(event)" 
+       ondrop="handleDrop(event)">
+    <p>Drag and drop images here</p>
+  </div>
+
+  <div id="preview"></div>
+
+  <script>
+    function handleDragEnter(event) {
+      event.preventDefault();
+      document.getElementById('dropArea').classList.add('dragover');
+    }
+
+    function handleDragOver(event) {
+      event.preventDefault();
+    }
+
+    function handleDragLeave(event) {
+      document.getElementById('dropArea').classList.remove('dragover');
+    }
+
+    function handleDrop(event) {
+      event.preventDefault();
+      document.getElementById('dropArea').classList.remove('dragover');
+
+      const files = event.dataTransfer.files;
+
+      if (files.length > 0) {
+        handleFiles(files);
+      }
+    }
+
+    function handleFiles(files) {
+      const previewElement = document.getElementById('preview');
+
+      for (const file of files) {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            const img = new Image();
+            img.src = e.target.result;
+            previewElement.appendChild(img);
+          };
+
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+  </script>
     <script src="main.js"></script>
 </body>
 </html>
