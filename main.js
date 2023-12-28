@@ -146,7 +146,7 @@ function showSet(is_test){
                 <div class="gw-card guess small card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="res/img/user.png">
+                        <img src="res/assets/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess small">
@@ -161,7 +161,7 @@ function showSet(is_test){
                 <div class="gw-card guess big card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="res/img/user.png">
+                        <img src="res/assets/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess big">
