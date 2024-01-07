@@ -1,28 +1,5 @@
 // players
-let players    = [
-    "Rhysand", 
-    "Feyre", 
-    "Suriel", 
-    "Nesta", 
-    "Tamlin", 
-    "Elain", 
-    "Lucien", 
-    "Gwyn", 
-    "Cassian", 
-    "Azriel", 
-    "Ruhn", 
-    "Hunt", 
-    "Aelin", 
-    "Rowan", 
-    "Lysandra", 
-    "Lidia", 
-    "Danika", 
-    "Bryce", 
-    "Manon", 
-    "Dorian", 
-    "Chaol"
-]
-
+let players = []
 const input_sizes_ids = [
     'card-pl-width',
     'card-pl-height',
@@ -30,9 +7,8 @@ const input_sizes_ids = [
     'card-gs-height'
 ]
 
-// let is_loading = true
-
 // DOM elements
+const preview_sec     = document.getElementById('preview-sec')
 const paper           = document.getElementById('paper')
 const print_btn       = document.getElementById('print')
 const test_cb         = document.getElementById('test-checkbox')
@@ -40,35 +16,10 @@ const rootStyles      = document.documentElement
 const to_print        = document.getElementById('to-print')
 test_cb.checked       = false
 
-// fn
-// function showLoader(){
-// const loader = `
-// <div class="loader-container">
-//     <div class="loader"></div>
-// </div>`
-
-// paper.innerHTML = loader
-// }
-
-function loadPage(){
+function loadTeams(){
     setSelectToPrint(test_cb.checked, to_print)
-    showSet(test_cb.checked)
+    showTeams(test_cb.checked)
 }
-
-// function getPlayers(){
-//     is_loading = true
-//     fetch(`http://127.0.0.1:5500/players.json`)
-//         .then(response => response.json())
-//         .then(data     => {
-//             players = data;
-//             is_loading = false
-//             loadPage()
-//         })
-//         .catch(error => {
-//             is_loading = false
-//             console.error('Error fetching image names:', error);
-//         });
-// }
 
 function setSelectToPrint(is_test, to_print){
     let appendHTML = `<option value="" selected disabled>-- select the cards to print --</option>`
@@ -94,10 +45,10 @@ function printSet(index){
     index = (index === '') ? 0 : parseInt(index, 10)
 
     // Create a new window or iframe
-    const printWindow = window.open('', '_blank');
+    const printWindow = window.open('', '_blank')
 
     // Add the HTML content you want to print
-    let teams = document.querySelectorAll('.team');
+    let teams = document.querySelectorAll('.team')
 
     // metto in un array il singolo team in modo da implementare un solo tipo di inject tramite foreach (per il caso in cui sia ALL)
     teams = (index !== 0) ? [teams[index -1]] : teams
@@ -122,21 +73,21 @@ function printSet(index){
             </main>
         </body>
       </html>
-    `);
+    `)
   
     // to load the css
     window.setTimeout(function(){
         // Close the document
-        printWindow.document.close();
+        printWindow.document.close()
       
         // Print the content
-        printWindow.print();
+        printWindow.print()
 
         window.clearTimeout(this)
     }, 2000)
 }
 
-function showSet(is_test){
+function showTeams(is_test){
     paper.innerHTML = ``
     if (is_test){
         paper.innerHTML = `
@@ -146,7 +97,7 @@ function showSet(is_test){
                 <div class="gw-card guess small card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="res/assets/user.png">
+                        <img src="res/assets/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess small">
@@ -161,7 +112,7 @@ function showSet(is_test){
                 <div class="gw-card guess big card-bound">
                     <div class="wrapper guess_gradient">
                         <div class="gw-card_header">prova</div>
-                        <img src="res/assets/user.png">
+                        <img src="res/assets/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess big">
@@ -172,7 +123,7 @@ function showSet(is_test){
             </div>
         </div>`
     }
-    else{
+    else {
         // 3 teams
         for (let i = 0; i < 3; i++) {
             // get the team type
@@ -193,12 +144,14 @@ function showSet(is_test){
 
             //set the card for each player
             players.forEach((player) => {
+                // player is a literal obj (name, src)
+
                 const card = `
                 <div class="front-back-wrapper">
                     <div class="gw-card ${team_type} ${card_size} card-bound">
                         <div class="wrapper ${team_type}_gradient">
-                            <div class="gw-card_header">${player}</div>
-                            <img src="res/img/${player}.png">
+                            <div class="gw-card_header">${player.name}</div>
+                            <img src="${player.src}">
                         </div>
                     </div>
                     <div class="gw-card ${team_back_type} ${card_size}">
@@ -231,6 +184,126 @@ function initSize(input_sizes_ids){
     })
 }
 
+// drag n drop functions
+function handleDragEnter(event) {
+    event.preventDefault()
+    document.getElementById('dropArea').classList.add('dragover')
+}
+
+function handleDragOver(event) {
+    event.preventDefault()
+}
+
+function handleDragLeave(event) {
+    document.getElementById('dropArea').classList.remove('dragover')
+}
+
+function handleDrop(event) {
+    event.preventDefault()
+    document.getElementById('dropArea').classList.remove('dragover')
+
+    const files = event.dataTransfer.files
+
+    if (files.length > 0) {
+        handleFiles(files)
+    }
+}
+
+// choose images on click
+function chooseFiles(){
+    document.getElementById('fileInput').click();
+}
+function handlePickImages() {
+    const files = document.getElementById('fileInput').files
+    
+    if (files.length > 0) {
+        handleFiles(files)
+    }
+}
+
+// load images
+function handleFiles(files) {
+    const previewElement = document.getElementById('preview')
+
+    for (const file of files) {
+        // only if is a image
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader()
+
+            // load the image
+            reader.onload = function (e) {
+                // remove the img extension and underscores
+                player_to_add = file.name.replace(new RegExp(/\.\S+/), '').replaceAll('_', ' ')
+
+                // check for duplicates
+                if(!players.some(obj => obj.name === player_to_add)){ 
+                    // ok
+                    players.push({
+                        "name": player_to_add,
+                        "src" : e.target.result
+                    })
+                }
+                else{
+                    // error this player already exists
+                    alert(`the player ${player_to_add} already exists, change its name`)
+                    return
+                }
+
+                // create the img wrap with remove button
+                const img_wrap     = document.createElement('div')
+                img_wrap.className = "img-wrap"
+                img_wrap.id        = player_to_add
+                
+                // create the remove button
+                const rm_button     = document.createElement('button')
+                rm_button.className = 'btn'
+                rm_button.innerHTML = '&cross;'
+                
+                // get the image
+                const img = new Image()
+                img.src   = e.target.result
+
+                // add event listener
+                rm_button.addEventListener('click', function remove_card(){
+                    // remove the listen ti click
+                    rm_button.removeEventListener('click', remove_card)
+                    
+                    // remove the player
+                    img_wrap.remove()
+                    players = players.filter((player)=>{return player.name != img_wrap.id})
+                    
+                    // if there are no players hide the preview section
+                    if(players.length == 0){
+                        preview_sec.style.display = 'none'
+                    }
+                    else{
+                        // refresh preview
+                        loadTeams()
+                    }
+                })
+                
+                //append button and img
+                img_wrap.appendChild(rm_button) 
+                img_wrap.appendChild(img)
+                
+                // append all in preview
+                previewElement.appendChild(img_wrap)
+
+                // refresh
+                loadTeams()
+
+                // show the preview-sec section
+                preview_sec.style.display = 'block'
+
+            }
+
+            // lettura di dati da URL (data: ..base64 code..)
+            reader.readAsDataURL(file)
+
+        }
+    }
+}
+
 //listen to the btn
 print_btn.addEventListener('click', (e)=>{
     const to_print   = document.getElementById('to-print')
@@ -239,7 +312,7 @@ print_btn.addEventListener('click', (e)=>{
 
 // listen to the test checkbox
 test_cb.addEventListener('change', (e)=>{
-    loadPage()
+    loadTeams()
 })
 
 // listen to the all inputs size
@@ -254,12 +327,15 @@ input_sizes_ids.forEach((input_id)=>{
         rootStyles.style.setProperty(`--${in_id}`, `${input.value}cm`)
 
         // reload page
-        loadPage()
+        loadTeams()
     })
 })
 
 // get the size of the cards and set it to the value
 initSize(input_sizes_ids)
 
-// load page
-loadPage()
+// set the select dropdown options
+setSelectToPrint(test_cb.checked, to_print)
+
+// remove the preview section 
+preview_sec.style.display = 'none'

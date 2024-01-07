@@ -7,23 +7,7 @@
 
     <!-- my style -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        #dropArea {
-          border: 2px dashed #3498db;
-          padding: 20px;
-          text-align: center;
-        }
-    
-        #dropArea.dragover {
-          background-color: #f0f0f0;
-        }
-    
-        img {
-          max-width: 100%;
-          max-height: 200px;
-          margin-top: 10px;
-        }
-      </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     
@@ -78,7 +62,7 @@
                     <a class="btn call-to-action subtitle" href="https://www.amazon.it/s?k=guess+who+grab+and+go">Buy the original game</a>
                 </div>
                 <div class="game-img">
-                    <img src="res/assets/game_box.png">
+                    <img src="res/assets/img/game/game_box.png">
                 </div>
             </div>
         </section>
@@ -91,24 +75,26 @@
                 <div class="content">
                     <div class="subtitle">Select all the character to use and remove the background</div>
                     <ul>
-                        <li>you can use the <a target="_blank" href="https://support.apple.com/guide/preview/extract-an-image-or-remove-a-background-prvw15636/mac#apd320b3b1b750a4">Apple's tools to remove the background</a></li>
-                        <li>or you can use  <a target="_blank" href="https://remove.bg">remove.bg</a></li>
+                        <li>The format of the image must be ".png"</li>
+                        <li>You can use the <a target="_blank" href="https://support.apple.com/guide/preview/extract-an-image-or-remove-a-background-prvw15636/mac#apd320b3b1b750a4">Apple's tools to remove the background</a></li>
+                        <li>Or you can use  <a target="_blank" href="https://remove.bg">remove.bg</a></li>
                     </ul>
                 </div>
                 <div class="img-container">
-                    <img src="res/assets/remove_bg.png" alt="image">
+                    <img src="res/assets/img/tutorial/tutorial_remove_bg.png" alt="image">
                 </div>
             </div>
             <div class="row">
                 <div class="content">
                     <div class="subtitle">Drag and Drop all the images</div>
                     <ul>
+                        <li>Before rename all the images with the name of the character (eg. Mike.png)</li>
                         <li>You can add more player by drag and drop</li>
                         <li>And you can remove by clicking the x button in the corner of each image</li>
                     </ul>
                 </div>
                 <div class="img-container">
-                    <img src="res/assets/remove_bg.png" alt="image">
+                    <img src="res/assets/img/tutorial/tutorial_drag_drop.png" alt="image">
                 </div>
             </div>
             <div class="row" id="card-example">
@@ -125,7 +111,7 @@
                         <div class="gw-card team_2 big card-bound">
                             <div class="wrapper team_2_gradient">
                                 <div class="gw-card_header">user</div>
-                                <img src="res/assets/user.png" >
+                                <img src="res/assets/img/user.png" >
                             </div>
                         </div>
                         <div class="gw-card team_2 big">
@@ -147,70 +133,35 @@
                 </div>
                 <div class="img-container">
                     <div class="ratio">
-                        <img src="res/assets/ratio.png" alt="image">
+                        <img src="res/assets/img/tutorial/tutorial_ratio.png" alt="image">
                     </div>
                 </div>
             </div>
         </section>
-        <section id="preview">
+        <section id="drop-sec">
+            <div class="title">DRAG AND DROP</div>
+            <div id="dropArea" 
+                ondragenter="handleDragEnter(event)" 
+                ondragover="handleDragOver(event)" 
+                ondragleave="handleDragLeave(event)" 
+                ondrop="handleDrop(event)">
+
+                <p>
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    Drag and drop images or 
+                    <button class="link" onclick="chooseFiles()">click here</button> 
+                    to import images
+                </p>
+                <input type="file" id="fileInput" accept="image/*" multiple onchange="handlePickImages()">
+            </div> 
+        </section>
+        <section id="preview-sec">
             <div class="title">PREVIEW</div>
+            <div class="team_wrapper" id="preview"></div>
             <div id="paper"></div>
         </section>
     </main>
 
-    <div id="dropArea" 
-       ondragenter="handleDragEnter(event)" 
-       ondragover="handleDragOver(event)" 
-       ondragleave="handleDragLeave(event)" 
-       ondrop="handleDrop(event)">
-    <p>Drag and drop images here</p>
-  </div>
-
-  <div id="preview"></div>
-
-  <script>
-    function handleDragEnter(event) {
-      event.preventDefault();
-      document.getElementById('dropArea').classList.add('dragover');
-    }
-
-    function handleDragOver(event) {
-      event.preventDefault();
-    }
-
-    function handleDragLeave(event) {
-      document.getElementById('dropArea').classList.remove('dragover');
-    }
-
-    function handleDrop(event) {
-      event.preventDefault();
-      document.getElementById('dropArea').classList.remove('dragover');
-
-      const files = event.dataTransfer.files;
-
-      if (files.length > 0) {
-        handleFiles(files);
-      }
-    }
-
-    function handleFiles(files) {
-      const previewElement = document.getElementById('preview');
-
-      for (const file of files) {
-        if (file.type.startsWith('image/')) {
-          const reader = new FileReader();
-
-          reader.onload = function (e) {
-            const img = new Image();
-            img.src = e.target.result;
-            previewElement.appendChild(img);
-          };
-
-          reader.readAsDataURL(file);
-        }
-      }
-    }
-  </script>
     <script src="main.js"></script>
 </body>
 </html>
