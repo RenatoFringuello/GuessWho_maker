@@ -16,6 +16,51 @@ const rootStyles      = document.documentElement
 const to_print        = document.getElementById('to-print')
 test_cb.checked       = false
 
+// link .scroll-to-links for smooth scrolling into tags
+document.querySelectorAll('.scroll-to-links').forEach((link)=>{
+    link.addEventListener('click', function (event) {  
+        event.preventDefault()
+        const targetId = this.getAttribute('href').substring(1)
+        scrollToElement(targetId)
+    })
+})
+function scrollToElement(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function disableScroll() {
+    document.body.style.overflow = 'hidden'
+}
+  
+function enableScroll() {
+    document.body.style.overflow = 'visible'
+}
+
+function showMessageBox(msg, status) {
+    const messageBox        = document.getElementById('message-box')
+    const messageBoxMessage = document.querySelector('#message-box .msg')
+    const messageBoxButton  = document.querySelector('#message-box button.btn')
+    
+    console.log(status);
+
+    disableScroll()
+    messageBox.classList.add(status) // ricorda di levarlo alla chiusura
+    messageBoxMessage.innerHTML = msg
+    
+    messageBoxButton.addEventListener('click', function closeMB(){
+        messageBox.style.display = 'none'
+        enableScroll()
+        messageBox.classList.remove(status) // ricorda di levarlo alla chiusura
+
+        messageBoxButton.removeEventListener('click', closeMB)
+    })
+
+    messageBox.style.display = 'flex'
+}
+
 function loadTeams(){
     setSelectToPrint(test_cb.checked, to_print)
     showTeams(test_cb.checked)
@@ -91,17 +136,17 @@ function showTeams(is_test){
     paper.innerHTML = ``
     if (is_test){
         paper.innerHTML = `
-        <div class="team_name subtitle">TEST (DON'T forget to print on grayscale!)</div>
+        <div class="team-name subtitle">TEST (save some color ink, print on grayscale!)</div>
         <div class="team">
             <div class="front-back-wrapper">
                 <div class="gw-card guess small card-bound">
-                    <div class="wrapper guess_gradient">
-                        <div class="gw-card_header">prova</div>
+                    <div class="wrapper guess-gradient">
+                        <div class="gw-card-header">prova</div>
                         <img src="res/assets/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess small">
-                    <div class="wrapper guess_gradient">
+                    <div class="wrapper guess-gradient">
                         <div class="logo">?</div>
                     </div>
                 </div>
@@ -110,13 +155,13 @@ function showTeams(is_test){
         <div class="team">
             <div class="front-back-wrapper">
                 <div class="gw-card guess big card-bound">
-                    <div class="wrapper guess_gradient">
-                        <div class="gw-card_header">prova</div>
+                    <div class="wrapper guess-gradient">
+                        <div class="gw-card-header">prova</div>
                         <img src="res/assets/img/user.png">
                     </div>
                 </div>
                 <div class="gw-card guess big">
-                    <div class="wrapper guess_gradient">
+                    <div class="wrapper guess-gradient">
                         <div class="logo">?</div>
                     </div>
                 </div>
@@ -127,16 +172,16 @@ function showTeams(is_test){
         // 3 teams
         for (let i = 0; i < 3; i++) {
             // get the team type
-            team_type      = (i == 0) ? 'team_1'     : (i == 1) ? 'team_2' : 'guess'
-            team_back_type = (i  > 1) ? 'guess_back' : team_type
+            team_type      = (i == 0) ? 'team-1'     : (i == 1) ? 'team-2' : 'guess'
+            team_back_type = (i  > 1) ? 'guess-back' : team_type
             card_size      = (i  > 1) ? 'big'        : 'small'
             
             // init the team wrapper
             const team_wrapper  = document.createElement('div')
-            team_wrapper.className = `team_wrapper ${team_type}`
+            team_wrapper.className = `team-wrapper ${team_type}`
 
             // inject team name
-            team_wrapper.innerHTML += `<div class="team_name subtitle">${team_type.replace('_', ' ')}</div>`
+            team_wrapper.innerHTML += `<div class="team-name subtitle">${team_type.replace('-', ' ')}</div>`
 
             // init the team
             const team  = document.createElement('div')
@@ -149,13 +194,13 @@ function showTeams(is_test){
                 const card = `
                 <div class="front-back-wrapper">
                     <div class="gw-card ${team_type} ${card_size} card-bound">
-                        <div class="wrapper ${team_type}_gradient">
-                            <div class="gw-card_header">${player.name}</div>
+                        <div class="wrapper ${team_type}-gradient">
+                            <div class="gw-card-header">${player.name}</div>
                             <img src="${player.src}">
                         </div>
                     </div>
                     <div class="gw-card ${team_back_type} ${card_size}">
-                        <div class="wrapper ${team_back_type}_gradient">
+                        <div class="wrapper ${team_back_type}-gradient">
                             <div class="logo">?</div>
                         </div>
                     </div>
@@ -211,7 +256,7 @@ function handleDrop(event) {
 
 // choose images on click
 function chooseFiles(){
-    document.getElementById('fileInput').click();
+    document.getElementById('fileInput').click()
 }
 function handlePickImages() {
     const files = document.getElementById('fileInput').files
@@ -245,10 +290,9 @@ function handleFiles(files) {
                 }
                 else{
                     // error this player already exists
-                    alert(`the player ${player_to_add} already exists, change its name`)
+                    showMessageBox(`the player '${player_to_add}' already exists, change its name`, 'error')
                     return
                 }
-
                 // create the img wrap with remove button
                 const img_wrap     = document.createElement('div')
                 img_wrap.className = "img-wrap"
@@ -295,14 +339,20 @@ function handleFiles(files) {
                 // show the preview-sec section
                 preview_sec.style.display = 'block'
 
+                showMessageBox('File loaded successfully', 'success')
             }
 
+            reader.onerror = function (event) {
+                showMessageBox('Somenting went wrong', 'error') 
+            }
+            
             // lettura di dati da URL (data: ..base64 code..)
             reader.readAsDataURL(file)
-
         }
     }
 }
+
+// LISTENERS
 
 //listen to the btn
 print_btn.addEventListener('click', (e)=>{
@@ -331,11 +381,11 @@ input_sizes_ids.forEach((input_id)=>{
     })
 })
 
+// INIT
+
 // get the size of the cards and set it to the value
 initSize(input_sizes_ids)
-
 // set the select dropdown options
 setSelectToPrint(test_cb.checked, to_print)
-
 // remove the preview section 
 preview_sec.style.display = 'none'
