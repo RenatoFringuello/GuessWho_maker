@@ -1,20 +1,20 @@
 :root{
-    --light_color    : #ffffff48;
-    --team_1         : #006dd4;
-    --team_2         : #db2020;
+    --light-color    : #ffffff48;
+    --team-1         : #006dd4;
+    --team-2         : #db2020;
     --guess          : #e4b700;
-    --guess_back     : #6ccc61;
+    --guess-back     : #6ccc61;
     --hint           : #fffa;
     --test           : #a6a6a6;
-    --test_l         : #dddddd;
-    --card_header_fg : #000;
-    --card_header_bg : #fff;
+    --test-l         : #dddddd;
+    --card-header-fg : #000;
+    --card-header-bg : #fff;
 
-    --card_thickness : 0.25mm;
-    --card_pl_height : 3cm;
-    --card_pl_width  : 1.7cm;
-    --card_gs_height : 4cm;
-    --card_gs_width  : 2.4cm;
+    --card-thickness : 0.25mm;
+    --card-pl-height : 3cm;
+    --card-pl-width  : 1.7cm;
+    --card-gs-height : 4cm;
+    --card-gs-width  : 2.4cm;
 }
 
 *,
@@ -79,20 +79,20 @@ button{
 ==================================================================*/
 header{
     min-height: 90dvh;
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     font-size: 1.3rem !important;
     display: flex;
     flex-direction: column;
     position: relative;
 
-    color: var(--card_header_bg);
-    background: linear-gradient(45deg, var(--team_1), var(--team_2), var(--guess), var(--guess_back));
+    color: var(--card-header-bg);
+    background: linear-gradient(45deg, var(--team-1), var(--team-2), var(--guess), var(--guess-back));
     background-size: 400% 400%;
     animation: gradientAnimation 15s infinite;
 }
 header::after{
     content: '';
-    background-color: var(--light_color);
+    background-color: var(--light-color);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -102,39 +102,7 @@ header > *{
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
-}
-
-header .filters,
-header .sizes{
-    min-width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .sizes .input-wrapper{
-    display: flex;
-    gap : 10px;
-    flex-grow: 1;
-    /* flex-basis: 28rem; */
-}
-header .sizes .input-wrapper .input-container{
-    width: 100%;
-}
-
-header .sizes .input-wrapper .input-container label{
-    margin-top: 5px;
-    display: flex;
-    gap : 10px;
-    align-items: center;
-    width: 100%;
-    color: #000;
-}
-header .sizes .input-wrapper .input-container label input{
-    flex-grow: 1;
-    width: 70px;
+    padding: 0.5rem 1rem;
 }
 
 header > section{
@@ -155,6 +123,9 @@ header > section .hero .description{
 header > section .hero .description > * {
     margin-bottom: 5px;
 }
+header > section .hero .description .btn.call-to-action {
+    margin-right: 5px;
+}
 header > section .hero .game-img img{
     object-fit: contain;
     transform:rotateY(180deg) rotateZ(-10deg) ;
@@ -168,7 +139,8 @@ header > section .hero .game-img img{
                             main
 ==================================================================*/
 main{
-    padding: 1rem 0;
+    padding: 1rem 0 0;
+    position: relative;
 }
 main #paper{
     padding: 1rem;
@@ -179,6 +151,81 @@ main > section:not(#tutorial-sec){
 
 main > section .title{
     text-align: center;
+}
+
+/*==================================================================
+                            footer
+==================================================================*/
+footer{
+    font-size: .7rem;
+    color: #0007;
+    text-align: center;
+    padding: .5rem 0;
+}
+
+/*===================================================
+                       MESSAGE BOX  
+===================================================*/
+.message-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: #0004;
+    width: 100%;
+    height: 100%;
+    /* display: flex; */
+    display: none;
+}
+.message-box .content{
+    padding: 30px 0;
+    margin: auto;
+    width: 450px;
+    aspect-ratio: 3/2;
+    background: #fff;
+    border-bottom: 5px solid;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.message-box .content > div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-box i::after{
+    font-size: 5rem !important;
+}
+.message-box.success i::after{
+    content: '\f058';
+    color: #6ccc61;
+}
+.message-box.error i::after{
+    content: '\f057';
+    color: #fb4646;
+}
+.message-box.warn i::after{
+    content: '\f071';
+    color: #fbd446;
+}
+.message-box .msg{
+    margin-top: 20px;
+    text-align: center;
+}
+.message-box button{
+    margin: 20px 0 0;
+}
+.message-box button.btn.ok{
+    background-color: #6ccc61;
+    color: #fff;
+}
+.message-box button.btn.cancel{
+    color: #f34949;
 }
 
 /*==================================================================
@@ -220,6 +267,7 @@ label{border-bottom: 1px solid #0000;}
 label:hover{border-bottom: 1px solid #000;}
 
 .btn{
+    display: inline-block;
     padding: .5rem 1rem !important;
     background-color: #fffb;
     border: none;
@@ -227,6 +275,7 @@ label:hover{border-bottom: 1px solid #000;}
     border-radius: 5px;
     transition: .5s ease-in-out;
     cursor: pointer;
+    font-size: clamp(.8rem 2vw 1.5rem);
 }
 .btn:hover{
     background-color: #fff;
@@ -237,13 +286,13 @@ label:hover{border-bottom: 1px solid #000;}
 }
 
 .btn.call-to-action{
-    max-width: 200px;
+    /* max-width: 200px; */
     margin-top: 1rem;
     color: #000 !important;;
 }
 
 .link{
-    color: var(--team_1);
+    color: var(--team-1);
     position: relative;
 }
 .link::after{
@@ -253,7 +302,7 @@ label:hover{border-bottom: 1px solid #000;}
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: var(--team_1);
+    background-color: var(--team-1);
 }
 .link:hover.link::after{
     animation: spring .5s ease-in-out 1;
@@ -262,7 +311,7 @@ label:hover{border-bottom: 1px solid #000;}
 /*==================================================================
                             TEAM
 ==================================================================*/
-.team_wrapper{
+.team-wrapper{
     border-radius: 20px;
     padding: 1rem 1rem 0.15rem;
     margin-bottom: 1rem ;
@@ -277,7 +326,7 @@ label:hover{border-bottom: 1px solid #000;}
     margin-bottom: 1rem;
     gap: 1rem;
 }
-.team_wrapper .team_name{
+.team-wrapper .team-name{
     text-transform: uppercase;
 }
 
@@ -287,32 +336,32 @@ label:hover{border-bottom: 1px solid #000;}
 }
 
 .card-bound{
-    border-right: var(--card_thickness) solid black;
+    border-right: var(--card-thickness) solid black;
 }
 
 /*==================================================================
                             CARDS
 ==================================================================*/
 .gw-card{
-    padding: calc(var(--card_pl_width) * 0.08);
+    padding: calc(var(--card-pl-width) * 0.08);
 }
 .gw-card.big{
-    padding: calc(var(--card_gs_width) * 0.08);
+    padding: calc(var(--card-gs-width) * 0.08);
 }
 
 .gw-card.small{
-    width  : var(--card_pl_width);
-    height : var(--card_pl_height);
+    width  : var(--card-pl-width);
+    height : var(--card-pl-height);
 }
 
 .gw-card.big{
-    width  : var(--card_gs_width);
-    height : var(--card_gs_height);
+    width  : var(--card-gs-width);
+    height : var(--card-gs-height);
 }
 
 .gw-card .wrapper{
     height: 100%;
-    border-radius: calc(var(--card_pl_width) * 0.05);
+    border-radius: calc(var(--card-pl-width) * 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -320,24 +369,24 @@ label:hover{border-bottom: 1px solid #000;}
     align-items: center;
 }
 .gw-card.big .wrapper{
-    border-radius: calc(var(--card_gs_width) * 0.05);
+    border-radius: calc(var(--card-gs-width) * 0.05);
 }
 
-.gw-card_header{
+.gw-card-header{
     width: 100%;
     border-radius: inherit;
-    font-size: calc(var(--card_pl_width) * 0.13);
+    font-size: calc(var(--card-pl-width) * 0.13);
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    padding: calc(var(--card_pl_width) * 0.05) 0;
-    color:var(--card_header_fg);
-    background-color: var(--card_header_bg);
+    padding: calc(var(--card-pl-width) * 0.05) 0;
+    color:var(--card-header-fg);
+    background-color: var(--card-header-bg);
     word-wrap: break-word;
 }
-.big .gw-card_header{
-    font-size: calc(var(--card_gs_width) * 0.13);
-    padding:   calc(var(--card_gs_width) * 0.03);
+.big .gw-card-header{
+    font-size: calc(var(--card-gs-width) * 0.13);
+    padding:   calc(var(--card-gs-width) * 0.03);
 }
 
 .gw-card img{
@@ -350,18 +399,18 @@ label:hover{border-bottom: 1px solid #000;}
 
 .gw-card .logo{
     margin: auto;
-    font-size: var(--card_pl_width);
+    font-size: var(--card-pl-width);
     font-weight: bold;
     color:#a31111;
-    -webkit-text-stroke-color: var(--card_header_bg);
-    -webkit-text-stroke-width: calc(var(--card_pl_width) * 0.02);
-    text-shadow: 0px 0px calc(var(--card_pl_width) * 0.1) #000;
+    -webkit-text-stroke-color: var(--card-header-bg);
+    -webkit-text-stroke-width: calc(var(--card-pl-width) * 0.02);
+    text-shadow: 0px 0px calc(var(--card-pl-width) * 0.1) #000;
 }
 
 .big.gw-card .logo{
-    font-size: var(--card_gs_width);
-    -webkit-text-stroke-width: calc(var(--card_gs_width) * 0.02);
-    text-shadow: 0px 0px calc(var(--card_gs_width) * 0.1) #000;
+    font-size: var(--card-gs-width);
+    -webkit-text-stroke-width: calc(var(--card-gs-width) * 0.02);
+    text-shadow: 0px 0px calc(var(--card-gs-width) * 0.1) #000;
 }
 
 /*============================================================
@@ -371,7 +420,7 @@ label:hover{border-bottom: 1px solid #000;}
 .ratio{
     height: 230px;
     width:  230px;
-    border: 5px dashed var(--team_2);
+    border: 5px dashed var(--team-2);
     display: flex;
     align-items: end;
     position: relative;
@@ -406,12 +455,12 @@ label:hover{border-bottom: 1px solid #000;}
 }
 
 #tutorial-sec .ratio{
-    animation: resize_ratio 4s ease-in-out alternate infinite;
+    animation: resize-ratio 4s ease-in-out alternate infinite;
 }
 
 #tutorial-sec #card-example .gw-card{
-    --card_gs_height : 4cm;
-    --card_gs_width  : 2.4cm;
+    --card-gs-height : 4cm;
+    --card-gs-width  : 2.4cm;
     animation: resize 8s ease-in-out infinite;
 }
 
@@ -468,6 +517,49 @@ label:hover{border-bottom: 1px solid #000;}
     padding: 0 !important;
 }
 
+#preview-sec #editor{
+    background-color: #0002;
+}
+
+#preview-sec #editor .filters,
+#preview-sec #editor .sizes{
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    padding: 0.5rem 1rem;
+    color: black !important;
+}
+
+#preview-sec #editor .sizes .input-wrapper{
+    display: flex;
+    gap : 10px;
+    flex-grow: 1;
+    /* flex-basis: 28rem; */
+}
+#preview-sec #editor .sizes .input-wrapper .input-container{
+    width: 100%;
+}
+
+#preview-sec #editor .sizes .input-wrapper .input-container label{
+    margin-top: 5px;
+    display: flex;
+    gap : 10px;
+    align-items: center;
+    width: 100%;
+    color: #000;
+}
+#preview-sec #editor .sizes .input-wrapper .input-container label input{
+    flex-grow: 1;
+    width: 70px;
+}
+
 #preview{
     background: #0002;
     padding: 1rem;
@@ -484,7 +576,7 @@ label:hover{border-bottom: 1px solid #000;}
     padding: 2px;
 }
 #preview .img-wrap:hover{
-    border-color: var(--team_2);
+    border-color: var(--team-2);
 }
 #preview .img-wrap button {
     position: absolute;
@@ -497,136 +589,145 @@ label:hover{border-bottom: 1px solid #000;}
 }
 #preview .img-wrap img {
     display: block;
+    width: 100%;
     max-height: 120px;
-    object-fit: contain;
+    aspect-ratio: 4/5;
+    object-fit: cover;
     border-radius: 8px;
+    overflow: hidden;
+}
+
+#print{
+    width: 100%;
+    background-color: #0002;
+    /* border-radius: ; */
 }
 
 /*==================================================================
     CARD TEAMS
- team_1
- team_2
+ team-1
+ team-2
  guess
 ==================================================================*/
-.team_1{
-    background: var(--team_1);
+.team-1{
+    background: var(--team-1);
 }
-.team_1 .team{
-    background-color: var(--light_color);
+.team-1 .team{
+    background-color: var(--light-color);
 }
-.team_1_gradient{
+.team-1-gradient{
     background: -webkit-radial-gradient(
         circle,
-        var(--team_1)    0%, var(--team_1)      5%,
-        var(--light_color)  5%, var(--light_color)   10%,
-        var(--team_1)   10%, var(--team_1)     15%,
-        var(--light_color) 15%, var(--light_color)   20%,
-        var(--team_1)   20%, var(--team_1)     25%,
-        var(--light_color) 25%, var(--light_color)   30%,
-        var(--team_1)   30%, var(--team_1)     35%,
-        var(--light_color) 35%, var(--light_color)   40%,
-        var(--team_1)   40%, var(--team_1)     45%,
-        var(--light_color) 45%, var(--light_color)   50%,
-        var(--team_1)   50%, var(--team_1)     55%,
-        var(--light_color) 55%, var(--light_color)   60%,
-        var(--team_1)   60%, var(--team_1)     65%,
-        var(--light_color) 65%, var(--light_color)   70%,
-        var(--team_1)   70%, var(--team_1)     75%,
-        var(--light_color) 75%, var(--light_color)   80%,
-        var(--team_1)   80%, var(--team_1)     85%,
-        var(--light_color) 85%, var(--light_color)   90%,
-        var(--team_1)   90%, var(--team_1)     95%,
-        var(--light_color) 95%, var(--light_color)  100%);
+        var(--team-1)    0%, var(--team-1)      5%,
+        var(--light-color)  5%, var(--light-color)   10%,
+        var(--team-1)   10%, var(--team-1)     15%,
+        var(--light-color) 15%, var(--light-color)   20%,
+        var(--team-1)   20%, var(--team-1)     25%,
+        var(--light-color) 25%, var(--light-color)   30%,
+        var(--team-1)   30%, var(--team-1)     35%,
+        var(--light-color) 35%, var(--light-color)   40%,
+        var(--team-1)   40%, var(--team-1)     45%,
+        var(--light-color) 45%, var(--light-color)   50%,
+        var(--team-1)   50%, var(--team-1)     55%,
+        var(--light-color) 55%, var(--light-color)   60%,
+        var(--team-1)   60%, var(--team-1)     65%,
+        var(--light-color) 65%, var(--light-color)   70%,
+        var(--team-1)   70%, var(--team-1)     75%,
+        var(--light-color) 75%, var(--light-color)   80%,
+        var(--team-1)   80%, var(--team-1)     85%,
+        var(--light-color) 85%, var(--light-color)   90%,
+        var(--team-1)   90%, var(--team-1)     95%,
+        var(--light-color) 95%, var(--light-color)  100%);
 }
 
-.team_2{
-    background: var(--team_2);
+.team-2{
+    background: var(--team-2);
 }
-.team_2 .team{
-    background-color: var(--light_color);
+.team-2 .team{
+    background-color: var(--light-color);
 }
-.team_2_gradient{
+.team-2-gradient{
     background: -webkit-radial-gradient(
         circle,
-        var(--team_2)    0%, var(--team_2)      5%,
-        var(--light_color)  5%, var(--light_color)   10%,
-        var(--team_2)   10%, var(--team_2)     15%,
-        var(--light_color) 15%, var(--light_color)   20%,
-        var(--team_2)   20%, var(--team_2)     25%,
-        var(--light_color) 25%, var(--light_color)   30%,
-        var(--team_2)   30%, var(--team_2)     35%,
-        var(--light_color) 35%, var(--light_color)   40%,
-        var(--team_2)   40%, var(--team_2)     45%,
-        var(--light_color) 45%, var(--light_color)   50%,
-        var(--team_2)   50%, var(--team_2)     55%,
-        var(--light_color) 55%, var(--light_color)   60%,
-        var(--team_2)   60%, var(--team_2)     65%,
-        var(--light_color) 65%, var(--light_color)   70%,
-        var(--team_2)   70%, var(--team_2)     75%,
-        var(--light_color) 75%, var(--light_color)   80%,
-        var(--team_2)   80%, var(--team_2)     85%,
-        var(--light_color) 85%, var(--light_color)   90%,
-        var(--team_2)   90%, var(--team_2)     95%,
-        var(--light_color) 95%, var(--light_color)  100%);
+        var(--team-2)    0%, var(--team-2)      5%,
+        var(--light-color)  5%, var(--light-color)   10%,
+        var(--team-2)   10%, var(--team-2)     15%,
+        var(--light-color) 15%, var(--light-color)   20%,
+        var(--team-2)   20%, var(--team-2)     25%,
+        var(--light-color) 25%, var(--light-color)   30%,
+        var(--team-2)   30%, var(--team-2)     35%,
+        var(--light-color) 35%, var(--light-color)   40%,
+        var(--team-2)   40%, var(--team-2)     45%,
+        var(--light-color) 45%, var(--light-color)   50%,
+        var(--team-2)   50%, var(--team-2)     55%,
+        var(--light-color) 55%, var(--light-color)   60%,
+        var(--team-2)   60%, var(--team-2)     65%,
+        var(--light-color) 65%, var(--light-color)   70%,
+        var(--team-2)   70%, var(--team-2)     75%,
+        var(--light-color) 75%, var(--light-color)   80%,
+        var(--team-2)   80%, var(--team-2)     85%,
+        var(--light-color) 85%, var(--light-color)   90%,
+        var(--team-2)   90%, var(--team-2)     95%,
+        var(--light-color) 95%, var(--light-color)  100%);
 }
 
 .guess{
     background: var(--guess);
 }
 .guess .team{
-    background-color: var(--light_color);
+    background-color: var(--light-color);
 }
-.guess_gradient{
+.guess-gradient{
     background: -webkit-radial-gradient(
         circle,  
         var(--guess)    0%, var(--guess)      5%, 
-        var(--light_color)  5%, var(--light_color)   10%,
+        var(--light-color)  5%, var(--light-color)   10%,
         var(--guess)   10%, var(--guess)     15%,
-        var(--light_color) 15%, var(--light_color)   20%,
+        var(--light-color) 15%, var(--light-color)   20%,
         var(--guess)   20%, var(--guess)     25%,
-        var(--light_color) 25%, var(--light_color)   30%,
+        var(--light-color) 25%, var(--light-color)   30%,
         var(--guess)   30%, var(--guess)     35%,
-        var(--light_color) 35%, var(--light_color)   40%,
+        var(--light-color) 35%, var(--light-color)   40%,
         var(--guess)   40%, var(--guess)     45%,
-        var(--light_color) 45%, var(--light_color)   50%,
+        var(--light-color) 45%, var(--light-color)   50%,
         var(--guess)   50%, var(--guess)     55%, 
-        var(--light_color) 55%, var(--light_color)   60%,
+        var(--light-color) 55%, var(--light-color)   60%,
         var(--guess)   60%, var(--guess)     65%,
-        var(--light_color) 65%, var(--light_color)   70%,
+        var(--light-color) 65%, var(--light-color)   70%,
         var(--guess)   70%, var(--guess)     75%,
-        var(--light_color) 75%, var(--light_color)   80%,
+        var(--light-color) 75%, var(--light-color)   80%,
         var(--guess)   80%, var(--guess)     85%,
-        var(--light_color) 85%, var(--light_color)   90%,
+        var(--light-color) 85%, var(--light-color)   90%,
         var(--guess)   90%, var(--guess)     95%,
-        var(--light_color) 95%, var(--light_color)  100%);
+        var(--light-color) 95%, var(--light-color)  100%);
 }
 
-.guess_back{
-    background: var(--guess_back);
+.guess-back{
+    background: var(--guess-back);
 }
-.guess_back_gradient{
+.guess-back-gradient{
     background: -webkit-radial-gradient(
         circle,  
-        var(--guess_back)    0%, var(--guess_back)      5%, 
-        var(--light_color)  5%, var(--light_color)   10%,
-        var(--guess_back)   10%, var(--guess_back)     15%,
-        var(--light_color) 15%, var(--light_color)   20%,
-        var(--guess_back)   20%, var(--guess_back)     25%,
-        var(--light_color) 25%, var(--light_color)   30%,
-        var(--guess_back)   30%, var(--guess_back)     35%,
-        var(--light_color) 35%, var(--light_color)   40%,
-        var(--guess_back)   40%, var(--guess_back)     45%,
-        var(--light_color) 45%, var(--light_color)   50%,
-        var(--guess_back)   50%, var(--guess_back)     55%, 
-        var(--light_color) 55%, var(--light_color)   60%,
-        var(--guess_back)   60%, var(--guess_back)     65%,
-        var(--light_color) 65%, var(--light_color)   70%,
-        var(--guess_back)   70%, var(--guess_back)     75%,
-        var(--light_color) 75%, var(--light_color)   80%,
-        var(--guess_back)   80%, var(--guess_back)     85%,
-        var(--light_color) 85%, var(--light_color)   90%,
-        var(--guess_back)   90%, var(--guess_back)     95%,
-        var(--light_color) 95%, var(--light_color)  100%);
+        var(--guess-back)    0%, var(--guess-back)      5%, 
+        var(--light-color)  5%, var(--light-color)   10%,
+        var(--guess-back)   10%, var(--guess-back)     15%,
+        var(--light-color) 15%, var(--light-color)   20%,
+        var(--guess-back)   20%, var(--guess-back)     25%,
+        var(--light-color) 25%, var(--light-color)   30%,
+        var(--guess-back)   30%, var(--guess-back)     35%,
+        var(--light-color) 35%, var(--light-color)   40%,
+        var(--guess-back)   40%, var(--guess-back)     45%,
+        var(--light-color) 45%, var(--light-color)   50%,
+        var(--guess-back)   50%, var(--guess-back)     55%, 
+        var(--light-color) 55%, var(--light-color)   60%,
+        var(--guess-back)   60%, var(--guess-back)     65%,
+        var(--light-color) 65%, var(--light-color)   70%,
+        var(--guess-back)   70%, var(--guess-back)     75%,
+        var(--light-color) 75%, var(--light-color)   80%,
+        var(--guess-back)   80%, var(--guess-back)     85%,
+        var(--light-color) 85%, var(--light-color)   90%,
+        var(--guess-back)   90%, var(--guess-back)     95%,
+        var(--light-color) 95%, var(--light-color)  100%);
 }
 
 /*===================================================
@@ -672,6 +773,11 @@ label:hover{border-bottom: 1px solid #000;}
         padding-top: 1rem;
         min-height: 250px;
     }
+
+    .message-box .content{
+        width: 350px;
+        padding: 1rem;
+    }
 }
 
 /*===================================================
@@ -716,8 +822,8 @@ label:hover{border-bottom: 1px solid #000;}
 }
 
 /*
-    --card_gs_height : 4cm;
-    --card_gs_width  : 2.4cm;
+    --card-gs-height : 4cm;
+    --card-gs-width  : 2.4cm;
 */
 @keyframes resize {
     4% {
@@ -742,7 +848,7 @@ label:hover{border-bottom: 1px solid #000;}
     }
 }
 
-@keyframes resize_ratio {
+@keyframes resize-ratio {
     from{
         height: 230px;
         width:  230px;

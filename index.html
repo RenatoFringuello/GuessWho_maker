@@ -12,54 +12,15 @@
 <body>
     
     <header>
-        <div class="sizes">
-            <div class="input-wrapper">
-                <div class="input-container">
-                    <h1>Team card width</h1>
-                    <label class="btn" for="card-pl-width" >
-                        <input type="number" name="card-pl-width" id="card-pl-width" placeholder="team card width in cm">
-                        <span>cm</span>
-                    </label>
-                </div>
-                <div class="input-container">
-                    <h1>Team card height</h1>
-                    <label class="btn" for="card-pl-height">
-                        <input type="number" name="card-pl-height" id="card-pl-height" placeholder="team card height in cm">
-                        <span>cm</span>
-                    </label>
-                </div>
-            </div>
-            <div class="input-wrapper">
-                <div class="input-container">
-                    <h1>Guess card height</h1>
-                    <label class="btn" for="card-gs-width" >
-                        <input type="number" name="card-gs-width" id="card-gs-width" placeholder="guess card width in cm">
-                        <span>cm</span>
-                    </label>
-                </div>
-                <div class="input-container">
-                    <h1>Guess card height</h1>
-                    <label class="btn" for="card-gs-height" >
-                        <input type="number" name="card-gs-height" id="card-gs-height" placeholder="guess card height in cm">
-                        <span>cm</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="filters">
-            <label for="test-checkbox">test card size
-                <input type="checkbox" name="test_cb" id="test-checkbox" checked>
-            </label>
-            <select class="btn" type="checkbox" name="to-print" id="to-print"></select>
-        </div>
+        
         <section>
             <div class="hero">
                 <div class="description">
                     <h1 class="title">GUESS WHO PERSONALIZED</h1>
                     <h2 class="subtitle">Just import all the image in the folder img and set the names</h2>
                     <!-- <h3 class="hint">If some cards are cropped off during the print preview, adjust the margin of the paper.</h3> -->
-                    <button class="btn call-to-action subtitle" id="print">Print</button>
-                    <a class="btn call-to-action subtitle" href="https://www.amazon.it/s?k=guess+who+grab+and+go">Buy the original game</a>
+                    <a class="btn scroll-to-links call-to-action subtitle" href="#drop-sec">Create Now</a>
+                    <a class="btn call-to-action subtitle" href="https://www.amazon.it/s?k=guess+who+grab+and+go" target="_blank">Buy the original game</a>
                 </div>
                 <div class="game-img">
                     <img src="res/assets/img/game/game_box.png">
@@ -84,7 +45,7 @@
                     <img src="res/assets/img/tutorial/tutorial_remove_bg.png" alt="image">
                 </div>
             </div>
-            <div class="row">
+            <div class="row reverse">
                 <div class="content">
                     <div class="subtitle">Drag and Drop all the images</div>
                     <ul>
@@ -108,27 +69,27 @@
                 </div>
                 <div class="img-container">
                     <div class="front-back-wrapper">
-                        <div class="gw-card team_2 big card-bound">
-                            <div class="wrapper team_2_gradient">
-                                <div class="gw-card_header">user</div>
+                        <div class="gw-card team-2 big card-bound">
+                            <div class="wrapper team-2-gradient">
+                                <div class="gw-card-header">user</div>
                                 <img src="res/assets/img/user.png" >
                             </div>
                         </div>
-                        <div class="gw-card team_2 big">
-                            <div class="wrapper team_2_gradient">
+                        <div class="gw-card team-2 big">
+                            <div class="wrapper team-2-gradient">
                                 <div class="logo">?</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row reverse">
                 <div class="content">
                     <div class="subtitle">Crop the image to the format of the card (optional)</div>
                     <div>for example to 4:5 (recommended for the grab and go edition)</div>
                     <ul>
                         <li>you can use the <a target="_blank" href="https://support.apple.com/it-it/guide/preview/prvw2015/mac#prvwb06e74c6">Apple's tools to resize the image</a></li>
-                        <li>or use the phone tools</li>
+                        <li>or others photo editor tools</li>
                     </ul>
                 </div>
                 <div class="img-container">
@@ -157,10 +118,65 @@
         </section>
         <section id="preview-sec">
             <div class="title">PREVIEW</div>
-            <div class="team_wrapper" id="preview"></div>
+            <div id="editor" class="team-wrapper">
+                <div class="sizes">
+                    <div class="input-wrapper">
+                        <div class="input-container">
+                            <h1>Team card width</h1>
+                            <label class="btn" for="card-pl-width" >
+                                <input type="number" name="card-pl-width" id="card-pl-width" placeholder="team card width in cm">
+                                <span>cm</span>
+                            </label>
+                        </div>
+                        <div class="input-container">
+                            <h1>Team card height</h1>
+                            <label class="btn" for="card-pl-height">
+                                <input type="number" name="card-pl-height" id="card-pl-height" placeholder="team card height in cm">
+                                <span>cm</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <div class="input-container">
+                            <h1>Guess card height</h1>
+                            <label class="btn" for="card-gs-width" >
+                                <input type="number" name="card-gs-width" id="card-gs-width" placeholder="guess card width in cm">
+                                <span>cm</span>
+                            </label>
+                        </div>
+                        <div class="input-container">
+                            <h1>Guess card height</h1>
+                            <label class="btn" for="card-gs-height" >
+                                <input type="number" name="card-gs-height" id="card-gs-height" placeholder="guess card height in cm">
+                                <span>cm</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters">
+                    <label for="test-checkbox">test card size
+                        <input type="checkbox" name="test-cb" id="test-checkbox" checked>
+                    </label>
+                    <select class="btn" type="checkbox" name="to-print" id="to-print"></select>
+                </div>
+            </div>
+            <div class="team-wrapper" id="preview"></div>
+            <button class="btn subtitle" id="print">Print</button>
             <div id="paper"></div>
         </section>
     </main>
+
+    <!-- alert success error warn-->
+    <div class="message-box" id="message-box">
+        <div class="content">
+            <div>
+                <i class="fa-solid"></i>
+                <div class="msg">Fato</div>
+            </div>
+            <button class="btn subtitle ok">Ok</button>
+        </div>
+    </div>
+    <footer>© Renato Fringuello 2024</footer>
 
     <script src="main.js"></script>
 </body>
